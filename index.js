@@ -1,37 +1,34 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+var cron = require('node-cron');
+//const {prefix, token, guildid, channelid } = require('./config.json');
 
 const client = new Discord.Client();
-client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+// client.commands = new Discord.Collection();
+// const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+// for (const file of commandFiles) {
+//     const command = require(`./commands/${file}`);
     
-	client.commands.set(command.name, command);
-}
+// 	client.commands.set(command.name, command);
+// }
 
 client.once('ready', () => {
 	console.log('Ready!');
 });
 
-client.on('message', message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-	const args = message.content.slice(prefix.length).split(/ +/);
-	const commandName = args.shift().toLowerCase();
-
-    if (!client.commands.has(commandName)) return;
-    
-    const command = client.commands.get(commandName);
-
-    try {
-	    command.execute(message, args);
-    } catch (error) {
-	    console.error(error);
-	    message.reply('there was an error trying to execute that command!');
-    }
+// executes everyday at 6:40pm
+cron.schedule('11 16 * * *', function(){
+    client.login('aFWLF7I4rsXUinW9fykWpxvg3xMIOuZd_UlREg6skalvS4YZMS-YAt8MRAc4-O-v-Geo').then(() => {
+        console.log("I am ready");
+        var guild = client.guilds.get('581543474822774784');
+        if(guild && guild.channels.get('581548308372389888')){
+            guild.channels.get('581548308372389888').send("@here Guaxinins invadirão a Guilda em 10 minutos!").then(() => client.destroy());
+        } else {
+            console.log("nope");
+            //if the bot doesn't have guild with the id guildid
+            // or if the guild doesn't have the channel with id channelid
+        }
+        client.destroy();
+    });
 });
-
-client.login(token);
