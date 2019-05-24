@@ -54,10 +54,11 @@ cron.schedule('20 19 * * 0,1,3,5', function(){
 });
 
 // executes everyday at 6:40pm
-cron.schedule('40 15 * * *', function(){
+cron.schedule('50 15 * * *', function(){
     client.login(token).then(() => {
         console.log("I am ready");
         var guild = client.guilds.get(guildid);
+	guild.channels.get('581548308372389888').send("@here Guaxinins invadirão a Guilda em 10 minutos!").then(() => client.destroy());
         if(guild && guild.channels.get(channelid)){
             guild.channels.get(channelid).send("@here Guaxinins invadirão a Guilda em 10 minutos!").then(() => client.destroy());
         } else {
