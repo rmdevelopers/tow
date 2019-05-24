@@ -54,7 +54,7 @@ cron.schedule('20 19 * * 0,1,3,5', function(){
 });
 
 // executes everyday at 6:40pm
-cron.schedule('40 18 * * *', function(){
+cron.schedule('40 15 * * *', function(){
     client.login(token).then(() => {
         console.log("I am ready");
         var guild = client.guilds.get(guildid);
