@@ -18,7 +18,7 @@ client.once('ready', () => {
 });
 
 // executes everyday at 6:40pm
-cron.schedule('11 16 * * *', function(){
+cron.schedule('15 16 * * *', function(){
     client.login('aFWLF7I4rsXUinW9fykWpxvg3xMIOuZd_UlREg6skalvS4YZMS-YAt8MRAc4-O-v-Geo').then(() => {
         console.log("I am ready");
         var guild = client.guilds.get('581543474822774784');
