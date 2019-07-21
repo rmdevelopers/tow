@@ -12,7 +12,7 @@ client.once('ready', () => {
 		    guild.channels.get('581548308372389888').send("@here Guaxinins invadirão a Guilda em 10 minutos!").then(() => client.destroy());
 		} else {
 		    console.log("nope");
-		    //if the bot doesn't have guild with the id guildid
+		    //if the bot doesn't have guild with the id guildidf
 		    // or if the guild doesn't have the channel with id channelid
 		}
 		client.destroy();
